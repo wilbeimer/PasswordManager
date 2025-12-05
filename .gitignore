@@ -13,4 +13,4 @@ __pycache__/
 *.db
 
 # nohup output logs
-*.out
+nohup.out

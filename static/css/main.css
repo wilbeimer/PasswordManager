@@ -108,6 +108,33 @@ a {
    color: var(--old-gold);
 }
 
+.top-row {
+   /* FIX 1: Display header and link side-by-side */
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: 1.5rem;
+}
+
+.top-row h1 {
+   margin: 0;
+   color: var(--pine-blue);
+   font-size: 2em;
+}
+
+.top-row a {
+   text-decoration: none;
+   color: white;
+   background-color: #dc3545; /* Red color for logout button */
+   padding: 8px 15px;
+   border-radius: 4px;
+   transition: background-color 0.3s;
+}
+
+.top-row a:hover {
+   background-color: #c82333;
+}
+
 .glow {
   box-shadow: 0 0 12px rgba(226, 192, 68, 0.6);
 }

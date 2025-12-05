@@ -7,7 +7,10 @@
 
    <body>
       <div class="app-container">
-         <h1>My Password Vault</h1>
+         <div class="top-row">
+            <h1>My Password Vault</h1>
+            <a href="/logout">Logout</a>
+         </div>
          <form method="POST" action="/add">
             <input name="site" placeholder="Site" required>
             <input name="username" placeholder="Username" required>
@@ -17,24 +20,28 @@
 
          <hr>
          <table border="1">
-            <tr>
-               <th>Site</th>
-               <th>Username</th>
-               <th>Password</th>
-               <th>Action</th>
-            </tr>
+            <thead>
+               <tr>
+                  <th>Site</th>
+                  <th>Username</th>
+                  <th>Password</th>
+                  <th>Action</th>
+               </tr>
+            </thead>
 
-            {% for p in passwords %}
-            <tr>
-               <td>{{ p.site }}</td>
-               <td>{{ p.username }}</td>
-               <td>
-                  <span class="hidden-password">••••••••</span>
-                  <button class="show-password" data-password="{{ p.password }}">Show</button>
-               </td> 
-               <td> <a href="/delete/{{ p.id }}">Delete</a> </td>
-            </tr>
-            {% endfor %} 
+            <tbody id="password-table-body">
+               {% for p in passwords %}
+               <tr>
+                  <td>{{ p.site }}</td>
+                  <td>{{ p.username }}</td>
+                  <td>
+                     <span class="hidden-password">••••••••</span>
+                     <button class="show-password" data-password="{{ p.password }}">Show</button>
+                  </td> 
+                  <td> <a href="/delete/{{ p.id }}">Delete</a> </td>
+               </tr>
+               {% endfor %} 
+            </tbody>
          </table>
       </div>
       <script src="../static/js/password.js"></script>

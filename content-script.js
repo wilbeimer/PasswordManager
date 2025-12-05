@@ -1,6 +1,7 @@
+API_BASE_URL = 'http://localhost:5001/'
 async function connect_to_api() {
    // Define the API URL 
-   const apiUrl = 'http://localhost:5000/status';
+   const apiUrl = API_BASE_URL + 'status';
 
    // Make a GET request
    const response = await fetch(apiUrl)
@@ -13,17 +14,28 @@ async function connect_to_api() {
 }
 
 async function get_credentials() {
-   site = window.location.hostname;
-   const apiUrl = 'http://localhost:5000/get/' + site
+    site = window.location.hostname;
+    const apiUrl = API_BASE_URL + 'get/' + site;
 
-   const response = await fetch(apiUrl);
+    try {
+        const response = await fetch(apiUrl);
 
-   if (!response.ok) {
-      throw new Error('Network response was not ok');
-   }
+        if (!response.ok) {
+            // Log the HTTP status for easier debugging
+            console.error(`API request failed with status: ${response.status}`);
+            // Return empty object on error
+            return { username: null, password: null };
+        }
 
-   const data = await response.json()
-   return data;
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        // This catches connection errors (server not running, network offline)
+        console.error("Failed to connect to local API server:", error.message);
+        // Return empty object on connection failure
+        return { username: null, password: null };
+    }
 }
 
 function getVisibleField() {

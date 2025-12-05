@@ -11,3 +11,6 @@ __pycache__/
 
 # Database
 *.db
+
+# nohup output logs
+*.out

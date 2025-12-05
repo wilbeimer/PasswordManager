@@ -1,20 +1,24 @@
 {
-  "manifest_version": 2,
-  "name": "Universal Autofill Extension",
-  "version": "0.1",
-  "description": "Autofills email fields across all websites.",
+   "manifest_version": 2,
+   "name": "Universal Autofill Extension",
+   "version": "0.1",
+   "description": "Autofills email fields across all websites.",
 
-  "permissions": [
+   "permissions": [
     "storage",
     "activeTab",
     "<all_urls>"
-  ],
+   ],
 
-  "content_scripts": [
+   "browser_action": {
+      "default_popup": "http://127.0.0.1:5000/"
+   },
+
+   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "js": ["content-script.js"],
       "run_at": "document_idle"
     }
-  ]
+   ]
 }

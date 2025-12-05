@@ -16,6 +16,11 @@ app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY", "dev_secret")
 
 
+@app.route('/status')
+def status():
+    return jsonify({'status': 'ok'})
+
+
 @app.route('/')
 def home():
     if not session.get("authenticated"):
@@ -71,10 +76,10 @@ def delete(id):
     return redirect("/")
 
 
-@app.route('/get/<int:id>/<site>')
-def get_by_id(id, site):
+@app.route('/get/<site>')
+def get_by_site(site):
     conn = get_db()
-    result = conn.execute("SELECT username, password FROM passwords WHERE id = ? AND site = ?", (id, site)).fetchone()
+    result = conn.execute("SELECT username, password FROM passwords WHERE site = ?", (site,)).fetchone()
     conn.close()
     return jsonify({
         "username": result["username"],

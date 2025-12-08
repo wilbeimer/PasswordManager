@@ -4,6 +4,7 @@ import sqlite3
 import os
 from datetime import timedelta
 from flask_cors import CORS
+from generator import generate_password
 
 
 def get_db() -> sqlite3.Connection:
@@ -100,6 +101,30 @@ def add():
     conn.close()
 
     return redirect("/")
+
+
+@app.route('/generate', methods=['GET', 'POST'])
+def generate():
+    length_str = request.values.get('length')
+
+    if length_str is None or not length_str.isdigit():
+        # Returns 400 if 'length' is missing or not a number, preventing a crash.
+        return jsonify({"message": "Missing or invalid 'length' parameter."}), 400
+
+    length = int(length_str)
+
+    MIN_LENGTH = 8
+    MAX_LENGTH = 50
+
+    if length < MIN_LENGTH or length > MAX_LENGTH:
+        return jsonify({"message": f"Password length must be between {MIN_LENGTH} and {MAX_LENGTH}."}), 400
+
+    password = generate_password(length)
+
+    return jsonify({
+        "message": "Password generated successfully",
+        "password": password
+    }), 200
 
 
 @app.route('/delete/<int:id>')

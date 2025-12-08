@@ -44,6 +44,7 @@ body {
    border-radius: 8px;
    font-weight: 600;
    cursor: pointer;
+   margin-top: 10px;
 }
 
 .btn-primary:hover {
@@ -60,12 +61,14 @@ body {
 }
 
 input {
-  background-color: var(--carbon-black);
-  border: 1px solid var(--pine-blue);
-  color: var(--text-main);
-  padding: 0.5rem;
-  border-radius: 6px;
-  outline: none;
+   background-color: var(--carbon-black);
+   border: 1px solid var(--pine-blue);
+   color: var(--text-main);
+   padding: 0.5rem;
+   border-radius: 6px;
+   outline: none;
+   height: 40px; 
+   box-sizing: border-box; /* Include padding/border in height calculation */
 }
 
 input:focus {
@@ -95,6 +98,7 @@ td {
    display: inline-block;
    width: 16ch; /* reserve width for ~8 characters */
    text-align: left;
+   user-select: all;
 }
 
 .show-password {
@@ -137,4 +141,28 @@ a {
 
 .glow {
   box-shadow: 0 0 12px rgba(226, 192, 68, 0.6);
+}
+
+.password-generator {
+   background-color: var(--old-gold);
+   max-width: 40%;
+   margin: .5rem 0;
+   padding: 10px;
+   border-radius: 14px;
+}
+
+#length {
+   width: 35px;
+}
+
+#password-output {
+    display: block; /* Make it take its own line */
+    text-align: center; /* Center the generated password */
+    padding: 10px 15px;
+    background-color: var(--carbon-black);
+    border: 1px solid var(--accent-primary); /* Use Old Gold border */
+    border-radius: 8px;
+    font-family: monospace; /* Monospace font helps with character clarity */
+    word-break: break-all;
+    user-select: all; /* Allows easy copying */
 }

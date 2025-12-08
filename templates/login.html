@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
    <head>
       <link rel="stylesheet" href="../static/css/main.css">
@@ -9,7 +10,19 @@
            <input type="password" name="password" placeholder="Master Password">
            <button>Unlock Vault</button>
          </form>
+
+         <div class="password-generator">
+            <form id='password-form' method="POST" action="/generate">
+               <input name="length" id="length" type="text" value="20" min="8" max="50">
+               <button name="new-password-btn" type="btn-primary glow">Generate New</button>
+            </form>
+
+            <div class="password-display">
+               <span id="password-output">Your password will appear here.</span>
+            </div>
+         </div>
       </div>
 
+      <script src="../static/js/generate.js"></script>
    </body>
 </html>

@@ -11,6 +11,18 @@
             <h1>My Password Vault</h1>
             <a href="/logout">Logout</a>
          </div>
+
+         <div class="password-generator">
+            <form id='password-form' method="POST" action="/generate">
+               <input name="length" type="text" id="length" value="20" min="8" max="50">
+               <button name="new-password-btn" type="btn-primary glow">Generate New</button>
+            </form>
+
+            <div class="password-display">
+               <span id="password-output">Your password will appear here.</span>
+            </div>
+         </div>
+
          <form method="POST" action="/add">
             <input name="site" placeholder="Site" required>
             <input name="username" placeholder="Username" required>
@@ -45,5 +57,6 @@
          </table>
       </div>
       <script src="../static/js/password.js"></script>
+      <script src="../static/js/generate.js"></script>
    </body>
 </html>
